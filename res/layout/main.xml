@@ -5,14 +5,23 @@
     android:orientation="vertical"
     android:id="@+id/layout" >
     
+    <Spinner
+        android:id="@+id/difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/difficulty_values"
+        android:prompt="@string/difficulty_prompt" 
+        android:layout_alignParentTop="true" />
+    
     <Button
 	        android:id="@+id/reset"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_alignParentTop="true"
+	        android:layout_below="@+id/difficulty"
+	        android:text="@string/new_game"
 	        android:layout_centerHorizontal="true"
-	        android:text="New Game"
-	        android:onClick="resetAction" />
+	        android:onClick="resetAction" 
+	        android:textSize="20sp"/>
     
     <RelativeLayout
 	    android:layout_width="match_parent"
@@ -96,7 +105,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_above="@+id/computerLabel"
 	        android:layout_alignLeft="@+id/computerLabel"
-	        android:text="You:"
+	        android:text="@string/you"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 	    
 	    <TextView
@@ -106,7 +115,7 @@
 	        android:layout_alignLeft="@+id/btn7"
 	        android:layout_alignParentBottom="true"
 	        android:layout_marginBottom="20dp"
-	        android:text="Computer:"
+	        android:text="@string/cpu"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	    <TextView

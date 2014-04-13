@@ -15,6 +15,15 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        
+        <item name="android:spinnerItemStyle">
+            @style/spinnerItemStyle
+        </item> 
+        
+    </style>
+    
+    <style name="spinnerItemStyle">
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

@@ -12,11 +12,15 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener, OnItemSelectedListener{
 	
 	/**
 	 * dp size for the buttons in the 3x3 grid
@@ -41,6 +45,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	 * Contains the game buttons, the 3x3 button grid
 	 */
 	protected Button[] buttons;
+	
+	protected int difficulty = 0;
 
 	/**
 	 * Gets called on app creation
@@ -50,10 +56,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		this.setContentView(R.layout.main);
 		this.buttons = new Button[9];
 		
+		// apply event listener for the difficulty spinner
+		Spinner difficultySpinner = (Spinner) findViewById(R.id.difficulty);
+		difficultySpinner.setOnItemSelectedListener(this);
+		
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.tictactoe);
 		
 		int buttonIterator = 0;
-		
 		// iterate all children
 		for( int i = 0; i < layout.getChildCount(); i++ ){
 			View v = layout.getChildAt(i);
@@ -107,7 +116,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		computerSign.setText("");
 		
 		// create new game
-		this.game = new TicTacToe();
+		this.game = new TicTacToe(this.difficulty);
 		
 		// fill legend
 		userSign.setText(this.game.getUserSign());
@@ -187,6 +196,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		if (Activity.RESULT_OK == resultCode && GAME_OVER == requestCode) {
 			this.resetGame();
 		}
+	}
+
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+		this.difficulty = pos;
+		this.resetGame();
+	}
+
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// not needed yet
 	}
 	
 }

@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="New game" />
+        android:text="@string/new_game" />
     <Button
         android:id="@+id/back"
         android:onClick="backAction"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/newGame"
         android:layout_centerHorizontal="true"
-        android:text="Back" />
+        android:text="@string/back" />
 
     <TextView
         android:id="@+id/statsLabel"
@@ -46,7 +46,7 @@
         android:layout_below="@+id/back"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="You - CPU"
+        android:text="@string/you_cpu"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/stats"

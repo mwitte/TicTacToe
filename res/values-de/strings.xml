@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">TicTacToe</string>
+    
+    <string name="difficulty_prompt">Choose a difficulty</string>
+    
+    <string name="new_game">Neues Spiel</string>
+    <string name="back">Zurück</string>
+    
+    <string name="you_won">Du gewinnst :)</string>
+    <string name="you_lost">Du verlierst :(</string>
+    <string name="draw">Unentschieden</string>
+    <string name="with_interactions">mit %1$d Zügen</string>
+    
+    <string name="you">Du</string>
+    <string name="cpu">CPU</string>
+    <string name="you_cpu">Du - CPU</string>
+ 
+    <string-array name="difficulty_values">
+        <item>Leicht</item>
+        <item>Mittel</item>
+        <item>Schwer</item>
+    </string-array>
+
+</resources>

@@ -28,17 +28,18 @@ public class GameOverActivity extends Activity {
 		switch(result) {
 			// user won
 			case 0:
-				playerWonLabel = "You won :-)";
-				interactionsText = "with " + interactions + " interactions";
+				playerWonLabel = getResources().getString(R.string.you_won);
+				
+				interactionsText = String.format(getResources().getString(R.string.with_interactions), interactions);;
 				break;
 			// cpu won
 			case 1:
-				playerWonLabel = "CPU won :-(";
-				interactionsText = "with " + interactions + " interactions";
+				playerWonLabel = getResources().getString(R.string.you_lost);
+				interactionsText = String.format(getResources().getString(R.string.with_interactions), interactions);;
 				break;
 			// draw
 			default:
-				playerWonLabel = "Draw";
+				playerWonLabel = getResources().getString(R.string.draw);;
 				interactionsText = "";
 		}
 		

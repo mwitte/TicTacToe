@@ -28,7 +28,13 @@ public class TicTacToe {
 	 */
 	protected int[] fields;
 	
-	public TicTacToe() {
+	protected AI ai;
+	
+	/**
+	 * @param difficulty the higher the smarter the cpu
+	 */
+	public TicTacToe(int difficulty) {
+		
 		this.fields = new int[9];
 		for(int i = 0; i < this.fields.length; i++) {
 			this.fields[i] = -1;
@@ -40,6 +46,7 @@ public class TicTacToe {
 		this.signs[1] = "O";
 		
 		// create the player ids randomized which means that the start player is random and the sign
+		// I think the sign should not change randomized but the task definition for this project required this
 		this.userId = new Random().nextInt(2);
 		System.out.println(this.userId);
 		if(this.userId == 0) {
@@ -47,6 +54,8 @@ public class TicTacToe {
 		}else{
 			this.computerId = 0;
 		}
+		// create the ai
+		this.ai = new AI(difficulty, this.userId, this.computerId);
 	}
 	
 	/**
@@ -111,6 +120,20 @@ public class TicTacToe {
 	}
 	
 	/**
+	 * Find the available fields
+	 * @return
+	 */
+	protected ArrayList<Integer> findAvailableFields() {
+		ArrayList<Integer> available = new ArrayList<Integer>();
+		for(int i = 0; i < this.fields.length; i++) {
+			if(this.fields[i] == -1) {
+				available.add(i);
+			}
+		}
+		return available;
+	}
+	
+	/**
 	 * Returns the index of the generated action or -1 if something is wrong
 	 * 
 	 * @return
@@ -125,49 +148,16 @@ public class TicTacToe {
 			}
 		}
 		
-		// there are no options
-		if(available.size() == 0) {
-			return -1;
-		}
+		int fieldIndex = this.ai.getTurn(this.fields, available);
 		
-		// there is only one option left, use it
-		if(available.size() == 1) {
-			this.fields[available.get(0)] = this.computerId;
-			return available.get(0);
+		if(fieldIndex >= 0) {
+			this.fields[fieldIndex] = this.computerId;
 		}
-		// check if one of the available options will win the game for the computer
-		for(int i = 0; i < available.size(); i++) {
-			this.fields[available.get(i)] = this.computerId;
-			// if this will result in a win for the computer
-			if(this.checkGameComplete() == 1) {
-				// @TODO this should probably only happen with a specific chance
-				return available.get(i);
-			}
-			// unchange
-			this.fields[available.get(i)] = -1;
-		}
-		
-		// check if one of the available options will win the game for the user
-		for(int i = 0; i < available.size(); i++) {
-			this.fields[available.get(i)] = this.userId;
-			// if this will result in a win for the user
-			if(this.checkGameComplete() == 0) {
-				this.fields[available.get(i)] = this.computerId;
-				// @TODO this should probably only happen with a specific chance
-				return available.get(i);
-			}
-			// unchange
-			this.fields[available.get(i)] = -1;
-		}
-		
-		// @TODO here are more cases possible
-		// - try to build "pairs"
-		// - try to build predicaments
-		
-		// use a random field
-		int index = new Random().nextInt(available.size());
-		this.fields[available.get(index)] = this.computerId;
-		return available.get(index);
+		return fieldIndex;
+	}
+	
+	public int checkGameComplete() {
+		return TicTacToe.checkGameComplete(this.fields, this.userId);
 	}
 	
 	/**
@@ -179,15 +169,15 @@ public class TicTacToe {
 	 *  2: draw
 	 * @return 
 	 */
-	public int checkGameComplete() {
+	public static int checkGameComplete(int[] fields, int playerId) {
 		
 		// check the rows
-		for(int i = 0; i < this.fields.length; i = i + 3) {
+		for(int i = 0; i < fields.length; i = i + 3) {
 			// check if row is equal
-			if(this.fields[i] == this.fields[i+1] && this.fields[i] == this.fields[i+2]){
+			if(fields[i] == fields[i+1] && fields[i] == fields[i+2]){
 				// only if anyone won
-				if(this.fields[i] > -1) {
-					if(this.fields[i] == this.userId) {
+				if(fields[i] > -1) {
+					if(fields[i] == playerId) {
 						return 0;
 					}else{
 						return 1;
@@ -197,12 +187,12 @@ public class TicTacToe {
 		}
 		
 		// check the columns
-		for(int i = 0; i < this.fields.length / 3; i++) {
+		for(int i = 0; i < fields.length / 3; i++) {
 			// check if row is equal
-			if(this.fields[i] == this.fields[i+3] && this.fields[i] == this.fields[i+6]){
+			if(fields[i] == fields[i+3] && fields[i] == fields[i+6]){
 				// only if anyone won
-				if(this.fields[i] > -1) {
-					if(this.fields[i] == this.userId) {
+				if(fields[i] > -1) {
+					if(fields[i] == playerId) {
 						return 0;
 					}else{
 						return 1;
@@ -212,10 +202,10 @@ public class TicTacToe {
 		}
 		
 		// check the dia left up to right down
-		if(this.fields[0] == this.fields[4] && this.fields[0] == this.fields[8]){
+		if(fields[0] == fields[4] && fields[0] == fields[8]){
 			// only if anyone won
-			if(this.fields[0] > -1) {
-				if(this.fields[0] == this.userId) {
+			if(fields[0] > -1) {
+				if(fields[0] == playerId) {
 					return 0;
 				}else{
 					return 1;
@@ -224,10 +214,10 @@ public class TicTacToe {
 		}
 		
 		// check the dia left down to right down
-		if(this.fields[6] == this.fields[4] && this.fields[6] == this.fields[2]){
+		if(fields[6] == fields[4] && fields[6] == fields[2]){
 			// only if anyone won
-			if(this.fields[6] > -1) {
-				if(this.fields[6] == this.userId) {
+			if(fields[6] > -1) {
+				if(fields[6] == playerId) {
 					return 0;
 				}else{
 					return 1;
@@ -236,8 +226,8 @@ public class TicTacToe {
 		}
 		
 		// check if there is still a playable field
-		for(int i = 0; i < this.fields.length; i++) {
-			if(this.fields[i] == -1) {
+		for(int i = 0; i < fields.length; i++) {
+			if(fields[i] == -1) {
 				return -1;
 			}
 		}

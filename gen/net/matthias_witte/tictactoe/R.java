@@ -8,34 +8,38 @@
 package net.matthias_witte.tictactoe;
 
 public final class R {
+    public static final class array {
+        public static final int difficulty_values=0x7f050000;
+    }
     public static final class attr {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int back=0x7f060003;
-        public static final int btn1=0x7f060009;
-        public static final int btn2=0x7f06000a;
-        public static final int btn3=0x7f06000c;
-        public static final int btn4=0x7f06000d;
-        public static final int btn5=0x7f06000b;
-        public static final int btn6=0x7f06000e;
-        public static final int btn7=0x7f06000f;
-        public static final int btn8=0x7f060010;
-        public static final int btn9=0x7f060011;
-        public static final int computerLabel=0x7f060013;
-        public static final int computerSign=0x7f060015;
-        public static final int interactions=0x7f060001;
-        public static final int layout=0x7f060006;
-        public static final int newGame=0x7f060002;
-        public static final int reset=0x7f060007;
-        public static final int result=0x7f060000;
-        public static final int stats=0x7f060005;
-        public static final int statsLabel=0x7f060004;
-        public static final int tictactoe=0x7f060008;
-        public static final int youLabel=0x7f060012;
-        public static final int youSign=0x7f060014;
+        public static final int back=0x7f070003;
+        public static final int btn1=0x7f07000a;
+        public static final int btn2=0x7f07000b;
+        public static final int btn3=0x7f07000d;
+        public static final int btn4=0x7f07000e;
+        public static final int btn5=0x7f07000c;
+        public static final int btn6=0x7f07000f;
+        public static final int btn7=0x7f070010;
+        public static final int btn8=0x7f070011;
+        public static final int btn9=0x7f070012;
+        public static final int computerLabel=0x7f070014;
+        public static final int computerSign=0x7f070016;
+        public static final int difficulty=0x7f070007;
+        public static final int interactions=0x7f070001;
+        public static final int layout=0x7f070006;
+        public static final int newGame=0x7f070002;
+        public static final int reset=0x7f070008;
+        public static final int result=0x7f070000;
+        public static final int stats=0x7f070005;
+        public static final int statsLabel=0x7f070004;
+        public static final int tictactoe=0x7f070009;
+        public static final int youLabel=0x7f070013;
+        public static final int youSign=0x7f070015;
     }
     public static final class layout {
         public static final int gameover=0x7f030000;
@@ -43,6 +47,16 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int back=0x7f040003;
+        public static final int cpu=0x7f040009;
+        public static final int difficulty_prompt=0x7f040001;
+        public static final int draw=0x7f040006;
+        public static final int new_game=0x7f040002;
+        public static final int with_interactions=0x7f040007;
+        public static final int you=0x7f040008;
+        public static final int you_cpu=0x7f04000a;
+        public static final int you_lost=0x7f040005;
+        public static final int you_won=0x7f040004;
     }
     public static final class style {
         /** 
@@ -66,10 +80,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f060001;
+        public static final int spinnerItemStyle=0x7f060002;
     }
 }

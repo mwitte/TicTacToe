@@ -2,10 +2,12 @@
 
 This is a simple android application.
 
-## The game
+###Features:
+- 3 difficulties
+- i18n(English, German)
+
+### Screenshots
 ![Game](game.png)
 
-## Game over
-![Game](gameover.png)
-
-Thanks [Vlad Marin](http://www.quizanswers.com/) for the icon.
+### Thanks
+- [Vlad Marin](http://www.quizanswers.com/) for the icon
