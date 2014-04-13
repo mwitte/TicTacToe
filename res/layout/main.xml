@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/layout" >
+    
+    <Button 
+	    android:id="@+id/reset"
+	    android:layout_width="80dp"
+	    android:onClick="resetAction"
+	    android:layout_height="80dp"
+	    android:layout_centerHorizontal="true"
+	    android:text="New game"
+	    />
+    
+    <RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:id="@+id/tictactoe" >
+	    <Button 
+	        android:id="@+id/btn1"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toLeftOf="@+id/btn2"
+	        android:layout_alignTop="@+id/btn2"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn2"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_above="@+id/btn5"
+	        android:layout_alignLeft="@+id/btn5"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn3"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toRightOf="@+id/btn2"
+	        android:layout_alignTop="@+id/btn2"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn4"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toLeftOf="@+id/btn5"
+	        android:layout_alignTop="@+id/btn5"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn5"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_centerInParent="true"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn6"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toRightOf="@+id/btn5"
+	        android:layout_alignTop="@+id/btn5"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn7"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toLeftOf="@+id/btn8"
+	        android:layout_alignTop="@+id/btn8"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn8"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_below="@+id/btn5"
+	        android:layout_alignLeft="@+id/btn5"
+	        />
+	    
+	    <Button 
+	        android:id="@+id/btn9"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_toRightOf="@+id/btn8"
+	        android:layout_alignTop="@+id/btn8"
+	        />
+
+    </RelativeLayout>
+    
+    <TextView
+	        android:id="@+id/result"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginBottom="36dp"
+	        android:text=""
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
