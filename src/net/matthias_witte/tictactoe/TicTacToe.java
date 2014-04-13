@@ -41,7 +41,7 @@ public class TicTacToe {
 		this.signs[0] = "X";
 		this.signs[1] = "O";
 		
-		// create the player ids randomized
+		// create the player ids randomized which means that the start player is random and the sign
 		this.userId = new Random().nextInt(2);
 		System.out.println(this.userId);
 		if(this.userId == 0) {
