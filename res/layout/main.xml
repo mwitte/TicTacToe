@@ -5,14 +5,14 @@
     android:orientation="vertical"
     android:id="@+id/layout" >
     
-    <Button 
-	    android:id="@+id/reset"
-	    android:layout_width="80dp"
-	    android:onClick="resetAction"
-	    android:layout_height="80dp"
-	    android:layout_centerHorizontal="true"
-	    android:text="New game"
-	    />
+    <Button
+	        android:id="@+id/reset"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+	        android:text="New Game"
+	        android:onClick="resetAction" />
     
     <RelativeLayout
 	    android:layout_width="match_parent"
@@ -90,16 +90,45 @@
 	        android:layout_alignTop="@+id/btn8"
 	        />
 
-    </RelativeLayout>
-    
-    <TextView
-	        android:id="@+id/result"
+	    <TextView
+	        android:id="@+id/youLabel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/computerLabel"
+	        android:layout_alignLeft="@+id/computerLabel"
+	        android:text="You:"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	    <TextView
+	        android:id="@+id/computerLabel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/btn7"
 	        android:layout_alignParentBottom="true"
-	        android:layout_centerHorizontal="true"
-	        android:layout_marginBottom="36dp"
+	        android:layout_marginBottom="20dp"
+	        android:text="Computer:"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/youSign"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBottom="@+id/youLabel"
+	        android:layout_alignRight="@+id/btn9"
 	        android:text=""
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <TextView
+	        android:id="@+id/computerSign"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBottom="@+id/computerLabel"
+	        android:layout_alignRight="@+id/youSign"
+	        android:text=""
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+    
+
 
 </RelativeLayout>

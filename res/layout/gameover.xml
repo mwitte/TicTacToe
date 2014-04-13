@@ -8,17 +8,53 @@
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ergebnis"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_above="@+id/interactions"
+        android:layout_centerHorizontal="true"
+        android:text="Result"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp" />
+    <TextView
+        android:id="@+id/interactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/newGame"
+        android:layout_centerHorizontal="true"
+        android:text="Interactions"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/newGame"
         android:onClick="newGameAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/result"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:text="New game" />
+    <Button
+        android:id="@+id/back"
+        android:onClick="backAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newGame"
+        android:layout_centerHorizontal="true"
+        android:text="Back" />
+
+    <TextView
+        android:id="@+id/statsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="You - CPU"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statsLabel"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

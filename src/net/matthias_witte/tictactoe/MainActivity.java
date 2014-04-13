@@ -19,19 +19,24 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements View.OnClickListener{
 	
 	/**
-	 * dp size for the buttons
+	 * dp size for the buttons in the 3x3 grid
 	 */
 	private static final int buttonSize = 80;
 	
 	private static final String logTag = "TicTacToe";
 	private static final int GAME_OVER = 1;
 	
-	protected int userId = 0;
-	protected int computerId = 1;
+	protected int userWon = 0;
+	protected int cpuWon = 0;
 	
+	/**
+	 * The game
+	 */
 	protected TicTacToe game;
 	
-	
+	/**
+	 * Contains the game buttons, the 3x3 button grid
+	 */
 	protected Button[] buttons;
 
 	/**
@@ -84,20 +89,36 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	 * Resets the game
 	 */
 	protected void resetGame() {
+		TextView userSign = (TextView) findViewById(R.id.youSign);
+		TextView computerSign = (TextView) findViewById(R.id.computerSign);
+		
+		// clear the ui
 		for(int i = 0; i < this.buttons.length; i++) {
 			this.buttons[i].setEnabled(true);
 			this.buttons[i].setText("");
 		}
-		TextView resultLabel = (TextView) findViewById(R.id.result);
-		resultLabel.setText("");
+		userSign.setText("");
+		computerSign.setText("");
+		
+		// create new game
 		this.game = new TicTacToe();
+		
+		// fill legend
+		userSign.setText(this.game.getUserSign());
+		computerSign.setText(this.game.getComputerSign());
+		
+		// random start the game
 		int index = this.game.randomStart();
+		// if the computer did something
 		if(index != -1) {
 			this.buttons[index].setEnabled(false);
 			this.buttons[index].setText(this.game.getComputerSign());
 		}
 	}
 	
+	/**
+	 * Eventlister for click event
+	 */
 	public void onClick(View view) {
 		Button button = (Button) view;
 		button.setText(this.game.getUserSign());
@@ -109,42 +130,46 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			}
 		}
 		
+		// check if game is not done yet
 		if(this.game.checkGameComplete() == -1) {
+			// its computer's turn
 			int index = this.game.setComputerField();
 			if(index >= 0) {
 				this.buttons[index].setEnabled(false);
 				this.buttons[index].setText(this.game.getComputerSign());
 			}
 		}
+		// check if the game is done
 		if(this.game.checkGameComplete() != -1) {
 			this.finalizeGame();
 		}
 	}
 	
+	/**
+	 * Opens the game over activity
+	 */
 	protected void finalizeGame() {
-		TextView resultLabel = (TextView) findViewById(R.id.result);
 		String result;
-		switch(this.game.checkGameComplete()) {
-		case 0:
-			resultLabel.setText("You won!");
-			result = "User won!";
-			break;
-		case 1:
-			resultLabel.setText("Computer won!");
-			result = "Computer won!";
-			break;
-		default:
-			resultLabel.setText("Draw!");
-			result = "Draw!";
-		}
+		Bundle b = new Bundle();
+		
 		for(int i = 0; i < this.buttons.length; i++){
 			this.buttons[i].setEnabled(false);
 		}
 		Intent i = new Intent(this,GameOverActivity.class);
-		//i.putExtra("result", result);
-		Bundle b = new Bundle();
-		b.putCharSequence("result", result);
+		
+		b.putInt("result", this.game.checkGameComplete());
+		b.putInt("interactions", this.game.getWinnerInteractions());
+		
+		if(this.game.checkGameComplete() == 0) {
+			this.userWon++;
+		}else if(this.game.checkGameComplete() == 1) {
+			this.cpuWon++;
+		}
+		
+		b.putInt("userWon", this.userWon);
+		b.putInt("cpuWon", this.cpuWon);
 		i.putExtras(b);
+		
 		startActivityForResult(i, GAME_OVER);
 	}
 	
@@ -154,6 +179,5 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			this.resetGame();
 		}
 	}
-	
 	
 }
