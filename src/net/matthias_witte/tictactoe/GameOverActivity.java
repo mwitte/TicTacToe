@@ -16,6 +16,7 @@ public class GameOverActivity extends Activity {
 		
 		Bundle b = getIntent().getExtras();
 		
+		// get the provided intent extra values
 		int result = b.getInt("result");
 		int interactions = b.getInt("interactions");
 		int userWon = b.getInt("userWon");
@@ -25,14 +26,17 @@ public class GameOverActivity extends Activity {
 		CharSequence interactionsText;
 		
 		switch(result) {
+			// user won
 			case 0:
 				playerWonLabel = "You won :-)";
 				interactionsText = "with " + interactions + " interactions";
 				break;
+			// cpu won
 			case 1:
 				playerWonLabel = "CPU won :-(";
 				interactionsText = "with " + interactions + " interactions";
 				break;
+			// draw
 			default:
 				playerWonLabel = "Draw";
 				interactionsText = "";

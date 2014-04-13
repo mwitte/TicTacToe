@@ -28,8 +28,6 @@ public class TicTacToe {
 	 */
 	protected int[] fields;
 	
-	protected int level = 1;
-	
 	public TicTacToe() {
 		this.fields = new int[9];
 		for(int i = 0; i < this.fields.length; i++) {
@@ -51,14 +49,27 @@ public class TicTacToe {
 		}
 	}
 	
+	/**
+	 * Get the sign of the user
+	 * @return
+	 */
 	public String getUserSign() {
 		return this.signs[this.userId];
 	}
 	
+	/**
+	 * Get the sign of the cpu
+	 * @return
+	 */
 	public String getComputerSign() {
 		return this.signs[this.computerId];
 	}
 	
+	/**
+	 * Get the amount of interactions of the winner
+	 * 
+	 * @return
+	 */
 	public int getWinnerInteractions() {
 		int winnerId;
 		switch(this.checkGameComplete()){
@@ -80,6 +91,10 @@ public class TicTacToe {
 		return count;
 	}
 	
+	/**
+	 * Set the action of the user
+	 * @param index
+	 */
 	public void setUserField(int index) {
 		this.fields[index] = this.userId;
 	}
@@ -125,6 +140,7 @@ public class TicTacToe {
 			this.fields[available.get(i)] = this.computerId;
 			// if this will result in a win for the computer
 			if(this.checkGameComplete() == 1) {
+				// @TODO this should probably only happen with a specific chance
 				return available.get(i);
 			}
 			// unchange
@@ -137,17 +153,21 @@ public class TicTacToe {
 			// if this will result in a win for the user
 			if(this.checkGameComplete() == 0) {
 				this.fields[available.get(i)] = this.computerId;
+				// @TODO this should probably only happen with a specific chance
 				return available.get(i);
 			}
 			// unchange
 			this.fields[available.get(i)] = -1;
 		}
 		
-		// otherwise use a random field
+		// @TODO here are more cases possible
+		// - try to build "pairs"
+		// - try to build predicaments
+		
+		// use a random field
 		int index = new Random().nextInt(available.size());
 		this.fields[available.get(index)] = this.computerId;
 		return available.get(index);
-		
 	}
 	
 	/**

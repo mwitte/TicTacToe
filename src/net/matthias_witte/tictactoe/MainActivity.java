@@ -26,6 +26,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	private static final String logTag = "TicTacToe";
 	private static final int GAME_OVER = 1;
 	
+	/**
+	 * Amount of wins
+	 */
 	protected int userWon = 0;
 	protected int cpuWon = 0;
 	
@@ -46,7 +49,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main);
 		this.buttons = new Button[9];
-		
 		
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.tictactoe);
 		
@@ -69,7 +71,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	}
 	
 	/**
-	 * sets up a single button
+	 * Sets up a single button
 	 */
 	protected void setUpButton(Button btn) {
 		
@@ -81,6 +83,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		btn.setEnabled(true);
 	}
 	
+	/**
+	 * Resets the game
+	 * @param view
+	 */
 	public void resetAction(View view) {
 		this.resetGame();
 	}
@@ -117,7 +123,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	}
 	
 	/**
-	 * Eventlister for click event
+	 * EventLister for click event
 	 */
 	public void onClick(View view) {
 		Button button = (Button) view;
@@ -173,8 +179,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		startActivityForResult(i, GAME_OVER);
 	}
 	
-	
+	/**
+	 * Gets called if a started activity results
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
 		if (Activity.RESULT_OK == resultCode && GAME_OVER == requestCode) {
 			this.resetGame();
 		}
