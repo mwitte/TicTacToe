@@ -1,10 +1,7 @@
 package net.matthias_witte.tictactoe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-
-import android.util.Log;
 
 public class TicTacToe {
 

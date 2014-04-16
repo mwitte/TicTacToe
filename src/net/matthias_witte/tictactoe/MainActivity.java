@@ -1,20 +1,15 @@
 package net.matthias_witte.tictactoe;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +22,6 @@ public class MainActivity extends Activity implements View.OnClickListener, OnIt
 	 */
 	private static final int buttonSize = 80;
 	
-	private static final String logTag = "TicTacToe";
 	private static final int GAME_OVER = 1;
 	
 	/**
@@ -164,7 +158,6 @@ public class MainActivity extends Activity implements View.OnClickListener, OnIt
 	 * Opens the game over activity
 	 */
 	protected void finalizeGame() {
-		String result;
 		Bundle b = new Bundle();
 		
 		for(int i = 0; i < this.buttons.length; i++){
